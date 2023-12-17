@@ -1,3 +1,4 @@
+# This phase focuses on gathering qualitative experiences, annotating them with spatial categories and quantitative subcategories, and creating a labeled dataset. After preprocessing the textual data, a text classification model (e.g., SVM) is trained on the dataset. Model evaluation ensures its performance, and predictions for new experiences are made. The results are saved to a CSV file for further analysis.
 import pandas as pd
 import spacy
 from sklearn.model_selection import train_test_split
@@ -5,8 +6,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import SVC
 import random
 
-# Step 1: Install and import required libraries
-# pip install spacy scikit-learn
 
 # Load spaCy model
 nlp = spacy.load("en_core_web_sm")
@@ -14,7 +13,7 @@ nlp = spacy.load("en_core_web_sm")
 
 # Step 2: Define functions for spatial category and quantitative subcategory extraction
 def extract_spatial_category(doc):
-    keywords = {"walking", "stairs", "ramps", "doors"}
+    keywords = {"corridors", "stairs", "ramps", "doors"}
     for token in doc:
         if token.lower_ in keywords:
             return token.lower_
@@ -22,7 +21,7 @@ def extract_spatial_category(doc):
 
 
 def extract_quantitative_subcategory(doc, spatial_category):
-    if spatial_category == "walking":
+    if spatial_category == "corridors":
         keywords = {"easy", "moderate", "difficult"}
     elif spatial_category == "stairs":
         keywords = {"easy", "moderate", "difficult"}

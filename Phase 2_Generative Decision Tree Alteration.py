@@ -1,7 +1,33 @@
+# In this phase, the existing decision tree structure is analyzed and represented as structured data. Integration logic rules for decision tree modification are defined based on the structured data. The decision tree is then updated using machine learning model predictions, introducing generative alterations. This phase ensures that the decision tree dynamically adapts to new qualitative data.
 from graphviz import Digraph
 import random
 
 # Phase 2.1 Programmatic Decision Tree Conversion: Convert the decision tree flow diagram into a programmatic representation.
+spatial_categories_flow_diagram = {
+    "Start": {
+        "Walking": {
+                    "Easy[0]": "Single Corridor",
+                    "Moderate[1]": "Multiple Corridors",
+                    "Difficult[2]": "Obstacled Corridor"
+                },
+        "Stairs": {
+                            "Easy[0]": "5 Steps",
+                            "Moderate[1]": "25 Steps",
+                            "Difficult[2]": "50 Steps"
+                        },
+        "Ramps": {
+                        "Easy[0]": "10° Elevation",
+                        "Moderate[1]": "35° Elevation",
+                        "Difficult[2]": "60° Elevation"
+                    },
+        "Doors": {
+                        "Easy[0]": "Standard Doors",
+                        "Moderate[1]": "Puzzle Doors",
+                        "Difficult[2]": "Unopenable Doors"
+        }
+    }
+}
+
 decision_tree = {
     "Start": {
         "Choose A or B": {
